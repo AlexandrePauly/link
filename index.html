@@ -19,7 +19,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             padding: 20px;
         }
 
@@ -102,7 +101,6 @@
             align-items: center;
             z-index: 1000;
             padding: 20px;
-            overflow-y: auto;
         }
 
         .analysis-container {
@@ -111,6 +109,7 @@
             border-radius: 20px;
             max-width: 600px;
             width: 100%;
+            height: 100%;
             color: #00ff41;
             font-family: 'Courier New', monospace;
             border: 2px solid #00ff41;
@@ -128,8 +127,8 @@
         .photo-container {
             position: relative;
             width: 100%;
-            max-width: 300px;
-            height: 300px;
+            max-width: 200px;
+            height: 200px;
             margin: 0 auto 30px;
             border: 3px solid #00ff41;
             border-radius: 10px;
@@ -181,7 +180,7 @@
         }
 
         .analysis-text {
-            margin: 15px 0;
+            margin: 10px 0;
             font-size: 0.95em;
             line-height: 1.6;
             opacity: 0;
@@ -199,7 +198,7 @@
 
         .result {
             background: rgba(0, 255, 65, 0.1);
-            padding: 20px 15px;
+            padding: 10px 15px;
             border-radius: 10px;
             margin-top: 30px;
             border: 1px solid #00ff41;
@@ -209,7 +208,7 @@
         }
 
         .result-line {
-            margin: 10px 0;
+            margin: 5px 0;
             font-size: 1em;
             word-wrap: break-word;
         }
@@ -237,11 +236,11 @@
             background: #ff6b6b;
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.1em;
+            padding: 10px 30px;
+            font-size: 0.8em;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 30px;
+            margin-top: 20px;
             opacity: 0;
             animation: fadeIn 0.5s ease-in forwards;
             animation-delay: 7s;
