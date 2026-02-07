@@ -2,13 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Veux-tu être ma Valentine ? 💝</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -19,61 +20,67 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            padding: 20px;
         }
 
         .container {
             text-align: center;
             background: white;
-            padding: 50px;
+            padding: 30px 20px;
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             max-width: 500px;
+            width: 100%;
             position: relative;
         }
 
         h1 {
             color: #667eea;
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-size: 1.8em;
+            margin-bottom: 20px;
             animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .question {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            padding: 0 10px;
         }
 
         .buttons {
             display: flex;
+            flex-direction: column;
             gap: 20px;
             justify-content: center;
             margin-top: 40px;
         }
 
         button {
-            padding: 15px 40px;
-            font-size: 1.2em;
+            padding: 18px 40px;
+            font-size: 1.3em;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            touch-action: manipulation;
         }
 
         #yesBtn {
             background: #ff6b6b;
             color: white;
             position: relative;
-        }
-
-        #yesBtn:hover {
-            background: #ee5a5a;
-            transform: scale(1.1);
+            order: 1;
         }
 
         #noBtn {
             background: #4ecdc4;
             color: white;
-        }
-
-        #noBtn:hover {
-            background: #45b8b0;
-            transform: scale(1.05);
+            order: 2;
         }
 
         /* Animation du titre */
@@ -94,15 +101,16 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            zoom: 70%;
+            padding: 20px;
+            overflow-y: auto;
         }
 
         .analysis-container {
             background: #1a1a2e;
-            padding: 40px;
+            padding: 30px 20px;
             border-radius: 20px;
             max-width: 600px;
-            width: 90%;
+            width: 100%;
             color: #00ff41;
             font-family: 'Courier New', monospace;
             border: 2px solid #00ff41;
@@ -111,15 +119,16 @@
 
         .analysis-header {
             text-align: center;
-            font-size: 1.5em;
-            margin-bottom: 30px;
+            font-size: 1.2em;
+            margin-bottom: 20px;
             color: #00ff41;
             text-shadow: 0 0 10px #00ff41;
         }
 
         .photo-container {
             position: relative;
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: 300px;
             margin: 0 auto 30px;
             border: 3px solid #00ff41;
@@ -172,9 +181,9 @@
         }
 
         .analysis-text {
-            margin: 20px 0;
-            font-size: 1.1em;
-            line-height: 1.8;
+            margin: 15px 0;
+            font-size: 0.95em;
+            line-height: 1.6;
             opacity: 0;
             animation: fadeIn 0.5s ease-in forwards;
         }
@@ -190,7 +199,7 @@
 
         .result {
             background: rgba(0, 255, 65, 0.1);
-            padding: 20px;
+            padding: 20px 15px;
             border-radius: 10px;
             margin-top: 30px;
             border: 1px solid #00ff41;
@@ -201,19 +210,20 @@
 
         .result-line {
             margin: 10px 0;
-            font-size: 1.2em;
+            font-size: 1em;
+            word-wrap: break-word;
         }
 
         .percentage {
             color: #ff6b6b;
-            font-size: 1.5em;
+            font-size: 1.3em;
             font-weight: bold;
             text-shadow: 0 0 10px #ff6b6b;
         }
 
         .recommendation {
             color: #ffd700;
-            font-size: 1.3em;
+            font-size: 1.1em;
             margin-top: 20px;
             animation: blink 1s ease-in-out infinite;
         }
@@ -235,11 +245,8 @@
             opacity: 0;
             animation: fadeIn 0.5s ease-in forwards;
             animation-delay: 7s;
-        }
-
-        .close-btn:hover {
-            background: #ee5a5a;
-            transform: scale(1.05);
+            width: 100%;
+            max-width: 250px;
         }
 
         /* Écran de succès */
@@ -254,6 +261,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            padding: 20px;
         }
 
         .success-content {
@@ -262,9 +270,14 @@
         }
 
         .success-content h1 {
-            font-size: 4em;
+            font-size: 2.5em;
             margin-bottom: 30px;
             animation: bounce 1s ease-in-out infinite;
+        }
+
+        .success-content p {
+            font-size: 1.3em;
+            padding: 0 20px;
         }
 
         @keyframes bounce {
@@ -295,16 +308,66 @@
                 opacity: 0;
             }
         }
+
+        /* Animation de rétrécissement diabolique */
+        @keyframes shrink {
+            to {
+                transform: scale(0.7);
+                font-size: 0.9em;
+                padding: 12px 30px;
+            }
+        }
+
+        .shrinking {
+            animation: shrink 0.3s ease forwards;
+        }
+
+        /* Media queries pour très petits écrans */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .question {
+                font-size: 1em;
+            }
+
+            button {
+                font-size: 1.1em;
+                padding: 15px 30px;
+            }
+
+            .photo-container {
+                height: 250px;
+            }
+
+            .analysis-header {
+                font-size: 1em;
+            }
+
+            .success-content h1 {
+                font-size: 2em;
+            }
+
+            .success-content p {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Empêche le zoom sur double tap */
+        button, .close-btn {
+            touch-action: manipulation;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>💝 Veux-tu être ma Valentine ? 💝</h1>
-        <p style="font-size: 1.2em; color: #666;">La question la plus importante de 2026...</p>
+        <p class="question">La question la plus importante de 2026...</p>
         
         <div class="buttons">
-            <button id="noBtn">Non</button>
             <button id="yesBtn">Oui</button>
+            <button id="noBtn">Non</button>
         </div>
     </div>
 
@@ -344,7 +407,7 @@
         <div class="hearts" id="heartsContainer"></div>
         <div class="success-content">
             <h1>🎉 YESSS ! 🎉</h1>
-            <p style="font-size: 2em;">Tu viens de rendre quelqu'un très heureux ! 💕</p>
+            <p>Tu viens de rendre quelqu'un très heureux ! 💕</p>
         </div>
     </div>
 
@@ -353,21 +416,78 @@
         const noBtn = document.getElementById('noBtn');
         const analysisScreen = document.getElementById('analysisScreen');
         const successScreen = document.getElementById('successScreen');
+        const container = document.querySelector('.container');
 
         // IMPORTANT : Remplace ce chemin par le chemin de ton image
         const photoPath = 'img/photo.jpeg'; // Change ici !
 
-        // Mouvement aléatoire du bouton Oui
-        yesBtn.addEventListener('mouseenter', () => {
-            const maxX = window.innerWidth - yesBtn.offsetWidth - 100;
-            const maxY = window.innerHeight - yesBtn.offsetHeight - 100;
+        let shrinkCount = 0;
+        let isYesBtnMoving = false;
+
+        // Fonction pour faire bouger le bouton Oui de manière aléatoire
+        function moveYesButton() {
+            if (isYesBtnMoving) return;
+            isYesBtnMoving = true;
+
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = yesBtn.getBoundingClientRect();
             
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
+            // Zone de mouvement dans le container
+            const maxX = containerRect.width - buttonRect.width - 40;
+            const maxY = containerRect.height - buttonRect.height - 40;
             
-            yesBtn.style.position = 'fixed';
+            const randomX = Math.random() * maxX + 20;
+            const randomY = Math.random() * maxY + 20;
+            
+            yesBtn.style.position = 'absolute';
             yesBtn.style.left = randomX + 'px';
             yesBtn.style.top = randomY + 'px';
+            yesBtn.style.transition = 'all 0.3s ease';
+
+            setTimeout(() => {
+                isYesBtnMoving = false;
+            }, 300);
+        }
+
+        // Fonction pour rétrécir le bouton Oui
+        function shrinkYesButton() {
+            shrinkCount++;
+            yesBtn.classList.add('shrinking');
+            
+            // Après 5 rétrécissements, le bouton devient minuscule et presque impossible à cliquer
+            if (shrinkCount >= 5) {
+                yesBtn.style.transform = 'scale(0.3)';
+                yesBtn.style.fontSize = '0.5em';
+                yesBtn.style.padding = '5px 10px';
+            }
+        }
+
+        // Détection tactile pour le bouton Oui (mobile)
+        yesBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            
+            // Rétrécit ET bouge le bouton
+            shrinkYesButton();
+            moveYesButton();
+        }, { passive: false });
+
+        // Détection souris pour le bouton Oui (desktop)
+        yesBtn.addEventListener('mouseenter', () => {
+            shrinkYesButton();
+            moveYesButton();
+        });
+
+        // Empêcher le clic/tap classique sur le bouton Oui
+        yesBtn.addEventListener('click', (e) => {
+            // Si le bouton est devenu très petit, on autorise le clic (récompense pour la persévérance)
+            if (shrinkCount >= 8) {
+                successScreen.style.display = 'flex';
+                createHearts();
+            } else {
+                e.preventDefault();
+                shrinkYesButton();
+                moveYesButton();
+            }
         });
 
         // Clic sur Non : lance l'analyse
@@ -377,6 +497,7 @@
             
             // Génère des points de scan aléatoires
             const scanPoints = document.getElementById('scanPoints');
+            scanPoints.innerHTML = ''; // Reset
             for (let i = 0; i < 15; i++) {
                 setTimeout(() => {
                     const point = document.createElement('div');
@@ -400,13 +521,6 @@
             document.getElementById('analysisResults').style.display = 'none';
         }
 
-        // Clic sur Oui (version mobile-friendly)
-        yesBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            successScreen.style.display = 'flex';
-            createHearts();
-        });
-
         // Crée des cœurs qui flottent
         function createHearts() {
             const heartsContainer = document.getElementById('heartsContainer');
@@ -421,6 +535,11 @@
                 setTimeout(() => heart.remove(), 5000);
             }, 300);
         }
+
+        // Empêche le zoom sur mobile
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
