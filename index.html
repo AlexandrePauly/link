@@ -479,7 +479,7 @@
         // Empêcher le clic/tap classique sur le bouton Oui
         yesBtn.addEventListener('click', (e) => {
             // Si le bouton est devenu très petit, on autorise le clic (récompense pour la persévérance)
-            if (shrinkCount >= 26) {
+            if (shrinkCount >= 5) {
                 successScreen.style.display = 'flex';
                 createHearts();
             } else {
